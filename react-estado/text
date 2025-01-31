@@ -1,0 +1,37 @@
+🚀 Pessoal, quero compartilhar com vocês um projeto super interessante que acabei de concluir no curso DevQuest!
+
+
+
+Desenvolvi uma aplicação que consome a API do GitHub para buscar informações de perfis e repositórios, finalizando assim o modulo de javascript avançado do curso DevQuest - Dev em Dobro - e confesso que foi uma jornada e tanto! 😅
+
+
+
+💡 O maior desafio? Lidar com as requisições assíncronas e tratar os diferentes estados da API. Aquela famosa "dança entre loading, error e success" que todo dev conhece bem!
+
+
+
+🛠️ No projeto, consegui implementar o que me foi proposto no desafio da Quest Javascript avançado, as seguintes funcionalidades:
+
+
+
+-Número de seguidores do usuário;
+
+-Número de pessoas que o usuário está seguindo;
+
+-Eventos recentes;
+
+-Quantidade de forks do repositório;
+
+-Quantidade de estrelas do repositório;
+
+-Quantidade de watchers do repositório;
+
+-Mostrar a linguagem de programação do repositório;
+
+-Tratamento de erros quando o perfil não é encontrado;
+
+-Interface responsiva e amigável.
+
+
+
+Agradeço ao Gustavo Silva, pelo feedback a qual tive na correção da minha quest.
