@@ -1,4 +1,4 @@
-import { Component } from "react"
+import { useState, useEffect } from "react"
 import '../deck-of-cards/cards.css'
 
 async function createDeck() {
@@ -12,41 +12,80 @@ async function getCards(deckId) {
     return await response.json()
 }
 
-class DeckOfCards extends Component {
-    constructor(){
-        super()
-        this.state = {
-            cards: []
-        }
-    }
+const CardList = (props) => {
+    return (
+        <ul>
+            {
+                props.cards.map((card, index) => {
+                    return (
+                        <li className="child" key={index}>
+                            <img src={card.image} alt={card.value} />
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    )
+}
 
-    async componentDidMount(){
-        const deckId =  await createDeck()
-        const data =  await getCards(deckId)
+const DeckOfCards = () => {
 
-        this.setState({
+    const [deck, setDeck] = useState({
+        cards: []
+    })
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const deckId = await createDeck()
+        const data = await getCards(deckId)
+
+        setDeck({
             cards: data.cards
         })
     }
+    fetchData()
+    }, [])
+
+    return (
+        <section className="container">
+            { deck.cards.length > 0 ? <CardList cards={deck.cards} /> : 'nehuma carta encontrada' }
+        </section>
+    )
+
+    // constructor(){
+    //     super()
+    //     this.state = {
+    //         cards: []
+    //     }
+    // }
+
+    // async componentDidMount(){
+    //     const deckId =  await createDeck()
+    //     const data =  await getCards(deckId)
+
+    //     this.setState({
+    //         cards: data.cards
+    //     })
+    // }
 
 
-    render(){
-        return(
-            <section className="container">
-                <ul>
-                   {
-                    this.state.cards.map((card, index) => {
-                        return(
-                            <li className="child" key={index}>
-                                <img src={card.image} alt={card.value} />
-                            </li>
-                        )
-                    })
-                   }
-                </ul>
-            </section>
-        )
-    }
+    // render(){
+    //     return(
+    //         <section className="container">
+    //             <ul>
+    //                {
+    //                 this.state.cards.map((card, index) => {
+    //                     return(
+    //                         <li className="child" key={index}>
+    //                             <img src={card.image} alt={card.value} />
+    //                         </li>
+    //                     )
+    //                 })
+    //                }
+    //             </ul>
+    //         </section>
+    //     )
+    // }
 }
 
 export default DeckOfCards
