@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import '../deck-of-cards/cards.css'
+import Form from '../forms/form'
 
 async function createDeck() {
     const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
@@ -8,9 +9,11 @@ async function createDeck() {
 }
 
 async function getCards(deckId) {
-    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`)
+    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
     return await response.json()
 }
+
+
 
 const CardList = (props) => {
     return (
@@ -46,8 +49,17 @@ const DeckOfCards = () => {
     fetchData()
     }, [])
 
+    const addCard = (newCard) => {
+        console.log(newCard);
+        setDeck({
+            cards: [...deck.cards, newCard]
+        })
+    }
+
     return (
+       
         <section className="container">
+             <Form addCard={addCard} />
             { deck.cards.length > 0 ? <CardList cards={deck.cards} /> : 'nehuma carta encontrada' }
         </section>
     )
