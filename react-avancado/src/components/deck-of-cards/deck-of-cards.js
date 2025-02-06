@@ -23,6 +23,7 @@ const CardList = (props) => {
                     return (
                         <li className="child" key={index}>
                             <img src={card.image} alt={card.value} />
+                            <p>{card.value} {card.suit}</p>
                         </li>
                     )
                 })
